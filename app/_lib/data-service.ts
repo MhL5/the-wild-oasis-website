@@ -1,5 +1,15 @@
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
+
+export type Cabin = {
+  id: number;
+  name: string;
+  maxCapacity: number;
+  regularPrice: number;
+  discount: number;
+  image: string;
+};
+
 /////////////
 // GET
 
@@ -17,7 +27,7 @@ export async function getCabin(id: string) {
     console.error(error);
   }
 
-  return data;
+  return data as Cabin;
 }
 
 export async function getCabinPrice(id: string) {
