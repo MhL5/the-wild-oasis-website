@@ -1,7 +1,20 @@
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
+import { notFound } from "next/navigation";
 
+// get cabin response type
 export type Cabin = {
+  id: number;
+  name: string;
+  maxCapacity: number;
+  regularPrice: number;
+  discount: number;
+  image: string;
+  description: string;
+};
+
+// get cabins response type
+export type Cabins = {
   id: number;
   name: string;
   maxCapacity: number;
@@ -23,8 +36,9 @@ export async function getCabin(id: string) {
   // For testing
   // await new Promise((res) => setTimeout(res, 1000));
 
-  if (error) {
+  if (error || !data) {
     console.error(error);
+    notFound();
   }
 
   return data as Cabin;
@@ -50,12 +64,12 @@ export const getCabins = async function () {
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("name");
 
-  if (error) {
+  if (error || !data) {
     console.error(error);
     throw new Error("Cabins could not be loaded");
   }
 
-  return data;
+  return data as Cabins[];
 };
 
 // Guests are uniquely identified by their email address
@@ -151,7 +165,7 @@ export async function getCountries() {
       "https://restcountries.com/v2/all?fields=name,flag"
     );
     const countries = await res.json();
-    return countries;
+    return countries as { name: string ,flag:string}[];
   } catch {
     throw new Error("Could not fetch countries");
   }

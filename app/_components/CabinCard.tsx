@@ -1,10 +1,10 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
-import { Cabin } from "../_lib/data-service";
+import { Cabins } from "../_lib/data-service";
 import Image from "next/image";
 import Link from "next/link";
 
 type CabinCardProps = {
-  cabin: Cabin;
+  cabin: Cabins;
 };
 
 function CabinCard({ cabin }: CabinCardProps) {
