@@ -1,9 +1,8 @@
-import { PropsWithChildren } from "react";
-import Navigation from "@/app/_components/Navigation";
-import Logo from "@/app/_components/Logo";
-import { Josefin_Sans } from "next/font/google";
 import "@/app/_styles/globals.css";
+import { Josefin_Sans } from "next/font/google";
+import { PropsWithChildren } from "react";
 import Header from "./_components/Header";
+import ReservationContextProvider from "./_components/ReservationContext";
 
 type RootLayoutProps = PropsWithChildren;
 
@@ -30,7 +29,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Header />
 
         <div className="flex-1 px-8 py-12">
-          <main className="max-w-7xl mx-auto w-full">{children}</main>
+          <main className="max-w-7xl mx-auto w-full">
+            <ReservationContextProvider>{children}</ReservationContextProvider>
+          </main>
         </div>
       </body>
     </html>
