@@ -13,6 +13,10 @@ import { z } from "zod";
 const envSchema = z.object({
   SUPABASE_URL: z.string(),
   SUPABASE_KEY: z.string(),
+  NEXTAUTH_URL: z.string(),
+  NEXTAUTH_SECRET: z.string(),
+  AUTH_GOOGLE_CLIENT_ID: z.string(),
+  AUTH_GOOGLE_CLIENT_SECRET: z.string(),
 });
 
 /**
