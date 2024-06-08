@@ -12,6 +12,9 @@ const nextAuthConfig: NextAuthConfig = {
       clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    authorized: ({ auth }) => !!auth?.user,
+  },
 };
 
 export const {
