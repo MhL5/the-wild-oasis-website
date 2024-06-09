@@ -41,6 +41,19 @@ export type Guest = {
   countryFlag: null | string;
 };
 
+export type Booking = {
+  id: string;
+  guestId: number;
+  startDate: string;
+  endDate: string;
+  numNights: number;
+  totalPrice: number;
+  numGuests: number;
+  cabinId: number;
+  created_at: string;
+  cabins: { name: string; image: string };
+};
+
 /////////////
 // GET
 
@@ -134,7 +147,11 @@ export async function getBookings(guestId: string) {
     throw new Error("Bookings could not get loaded");
   }
 
-  return data;
+  let booking: Booking[] = [];
+  // @ts-expect-error todo: temp solution ⏰
+  if (data) booking = data;
+
+  return booking;
 }
 
 export async function getBookedDatesByCabinId(cabinId: string) {
