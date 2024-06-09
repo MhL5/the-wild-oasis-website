@@ -23,7 +23,7 @@ export type Cabins = {
   image: string;
 };
 
-type newGuestParams = {
+type NewGuestParams = {
   fullName?: string;
   email?: string;
   nationalId?: string;
@@ -1435,7 +1435,7 @@ export async function getCountries() {
 
 /////////////
 // CREATE
-export async function createGuest(newGuest: newGuestParams) {
+export async function createGuest(newGuest: NewGuestParams) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
 
   if (error) {
