@@ -31,6 +31,16 @@ type NewGuestParams = {
   countryFlag?: string;
 };
 
+export type Guest = {
+  id: number;
+  created_at: Date;
+  fullName: string;
+  email: string;
+  nationalID: null | string;
+  nationality: null | string;
+  countryFlag: null | string;
+};
+
 /////////////
 // GET
 
@@ -88,8 +98,10 @@ export async function getGuest(email: string) {
     .eq("email", email)
     .single();
 
+  if (!data || error) throw new Error("getting guest failed");
+
   // No error here! We handle the possibility of no guest in the sign in callback
-  return data;
+  return data as Guest;
 }
 
 export async function getBooking(id: string) {
@@ -1465,6 +1477,7 @@ export async function createBooking(newBooking: { [key: string]: string }) {
 /////////////
 // UPDATE
 
+/*
 // The updatedFields is an object which should ONLY contain the updated data
 export async function updateGuest(
   id: string,
@@ -1514,3 +1527,4 @@ export async function deleteBooking(id: string) {
   }
   return data;
 }
+*/
