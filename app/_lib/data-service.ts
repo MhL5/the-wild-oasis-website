@@ -54,6 +54,24 @@ export type Booking = {
   cabins: { name: string; image: string };
 };
 
+export type GetBooking = {
+  id: number;
+  created_at: string;
+  startDate: string;
+  endDate: string;
+  numNights: number;
+  numGuests: number;
+  cabinPrice: number;
+  extrasPrice: number;
+  totalPrice: number;
+  status: string;
+  hasBreakfast: true;
+  isPaid: false;
+  observations: string;
+  cabinId: number;
+  guestId: number;
+};
+
 /////////////
 // GET
 
@@ -124,12 +142,9 @@ export async function getBooking(id: string) {
     .eq("id", id)
     .single();
 
-  if (error) {
-    console.error(error);
-    throw new Error("Booking could not get loaded");
-  }
+  if (error || !data) throw new Error("Booking could not get loaded");
 
-  return data;
+  return data as GetBooking;
 }
 
 export async function getBookings(guestId: string) {
