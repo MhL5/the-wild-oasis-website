@@ -11,7 +11,7 @@ import {
 import { DateRange } from "react-day-picker";
 
 type ReservationContextProviderProps = PropsWithChildren;
-type RangeState = DateRange | undefined;
+export type RangeState = DateRange | undefined;
 type ReservationContextValues = {
   range: RangeState;
   setRange: Dispatch<SetStateAction<RangeState>>;

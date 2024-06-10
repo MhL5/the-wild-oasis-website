@@ -7,8 +7,6 @@ import { PropsWithChildren } from "react";
 type ButtonProps = PropsWithChildren<{
   filter: FilterSearchParam;
   activeFilter: string;
-  // todo: bad eslint config causing this
-  // eslint-disable-next-line no-unused-vars
   handleFilter: (filter: FilterSearchParam) => void;
 }>;
 
