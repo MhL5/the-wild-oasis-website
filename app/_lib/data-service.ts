@@ -1489,7 +1489,7 @@ export async function createGuest(newGuest: NewGuestParams) {
 
   return data;
 }
-
+/*
 export async function createBooking(newBooking: { [key: string]: string }) {
   const { data, error } = await supabase
     .from("bookings")
@@ -1505,6 +1505,7 @@ export async function createBooking(newBooking: { [key: string]: string }) {
 
   return data;
 }
+/*
 
 /////////////
 // UPDATE
